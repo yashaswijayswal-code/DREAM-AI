@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DreamAI - AI Creator</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #080b14;
+  color: white;
+}
+
+header {
+  padding: 20px;
+  text-align: center;
+  background: #101522;
+  border-bottom: 1px solid #252b3a;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #7c5cff;
+}
+
+.hero {
+  text-align: center;
+  padding: 60px 20px 40px;
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  color: #aeb5c7;
+  font-size: 17px;
+  margin-bottom: 30px;
+}
+
+.generator {
+  max-width: 700px;
+  margin: auto;
+  background: #111624;
+  padding: 25px;
+  border-radius: 20px;
+  border: 1px solid #292f40;
+}
+
+textarea {
+  width: 100%;
+  height: 120px;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #343b50;
+  background: #080b14;
+  color: white;
+  font-size: 16px;
+  resize: none;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 14px 20px;
+  margin-top: 15px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.generate {
+  width: 100%;
+  background: #7c5cff;
+  color: white;
+}
+
+.cards {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: #111624;
+  border: 1px solid #292f40;
+  padding: 25px;
+  border-radius: 18px;
+  text-align: center;
+}
+
+.card h2 {
+  margin: 10px 0;
+}
+
+.card p {
+  color: #9da5b8;
+  font-size: 14px;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #777f92;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Dream<span>AI</span></div>
+</header>
+
+<section class="hero">
+  <h1>Create With AI</h1>
+  <p>Generate images and videos from your imagination.</p>
+
+  <div class="generator">
+    <textarea id="prompt"
+      placeholder="Describe what you want to create..."></textarea>
+
+    <button class="generate" onclick="generate()">
+      ✨ Generate
+    </button>
+
+    <p id="status" style="margin-top:15px;"></p>
+  </div>
+</section>
+
+<section class="cards">
+
+  <div class="card">
+    <div style="font-size:45px;">🎨</div>
+    <h2>2D Image</h2>
+    <p>Create beautiful AI 2D images.</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:45px;">🧊</div>
+    <h2>3D Image</h2>
+    <p>Create detailed 3D artwork.</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:45px;">🎬</div>
+    <h2>2D Video</h2>
+    <p>Turn your ideas into videos.</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:45px;">🚀</div>
+    <h2>3D Video</h2>
+    <p>Create cinematic 3D videos.</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:45px;">💎</div>
+    <h2>4K Enhance</h2>
+    <p>Improve image and video quality.</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:45px;">🖼️</div>
+    <h2>Image to Video</h2>
+    <p>Animate your images with AI.</p>
+  </div>
+
+</section>
+
+<footer>
+  © 2026 DreamAI — AI Creator Studio
+</footer>
+
+<script>
+function generate() {
+  const prompt = document.getElementById("prompt").value;
+
+  if (!prompt.trim()) {
+    document.getElementById("status").innerText =
+      "Please enter a prompt first.";
+    return;
+  }
+
+  document.getElementById("status").innerText =
+    "AI generation will be connected in the next step...";
+}
+</script>
+
+</body>
+  </html>
