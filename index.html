@@ -1,207 +1,691 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="google-site-verification" content="Qe2doKX59r-3Fxz2k7t77fiVczF9yKnNrVhrBNh05XY" />
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DreamAI - AI Creator</title>
+  <meta charset="UTF-8">
 
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-body {
-  font-family: Arial, sans-serif;
-  background: #080b14;
-  color: white;
-}
+  <meta name="google-site-verification"
+        content="Qe2doKX59r-3Fxz2k7t77fiVczF9yKnNrVhrBNh05XY">
 
-header {
-  padding: 20px;
-  text-align: center;
-  background: #101522;
-  border-bottom: 1px solid #252b3a;
-}
+  <meta name="description"
+        content="DreamAI - Create amazing AI images from your imagination.">
 
-.logo {
-  font-size: 30px;
-  font-weight: bold;
-}
+  <title>DreamAI - AI Image Generator</title>
 
-.logo span {
-  color: #7c5cff;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-.hero {
-  text-align: center;
-  padding: 60px 20px 40px;
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, #35206b, transparent 35%),
+        radial-gradient(circle at bottom right, #132b55, transparent 35%),
+        #080914;
+      color: white;
+      min-height: 100vh;
+    }
 
-.hero h1 {
-  font-size: 42px;
-  margin-bottom: 15px;
-}
+    /* HEADER */
 
-.hero p {
-  color: #aeb5c7;
-  font-size: 17px;
-  margin-bottom: 30px;
-}
+    header {
+      width: 100%;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(8,9,20,0.75);
+      backdrop-filter: blur(15px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
 
-.generator {
-  max-width: 700px;
-  margin: auto;
-  background: #111624;
-  padding: 25px;
-  border-radius: 20px;
-  border: 1px solid #292f40;
-}
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
 
-textarea {
-  width: 100%;
-  height: 120px;
-  padding: 15px;
-  border-radius: 12px;
-  border: 1px solid #343b50;
-  background: #080b14;
-  color: white;
-  font-size: 16px;
-  resize: none;
-}
+    .logo span {
+      color: #a855f7;
+    }
 
-button {
-  border: none;
-  border-radius: 10px;
-  padding: 14px 20px;
-  margin-top: 15px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: bold;
-}
+    .badge {
+      padding: 8px 14px;
+      border-radius: 30px;
+      background: rgba(168,85,247,0.15);
+      border: 1px solid rgba(168,85,247,0.35);
+      font-size: 13px;
+      color: #d8b4fe;
+    }
 
-.generate {
-  width: 100%;
-  background: #7c5cff;
-  color: white;
-}
+    /* HERO */
 
-.cards {
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-}
+    .hero {
+      max-width: 950px;
+      margin: auto;
+      padding: 80px 20px 50px;
+      text-align: center;
+    }
 
-.card {
-  background: #111624;
-  border: 1px solid #292f40;
-  padding: 25px;
-  border-radius: 18px;
-  text-align: center;
-}
+    .tag {
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 30px;
+      background: rgba(168,85,247,0.12);
+      border: 1px solid rgba(168,85,247,0.3);
+      color: #d8b4fe;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
 
-.card h2 {
-  margin: 10px 0;
-}
+    h1 {
+      font-size: clamp(42px, 8vw, 75px);
+      line-height: 1;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #ffffff, #c084fc, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-.card p {
-  color: #9da5b8;
-  font-size: 14px;
-}
+    .hero-text {
+      max-width: 650px;
+      margin: auto;
+      color: #aeb4c7;
+      font-size: 18px;
+      line-height: 1.7;
+    }
 
-footer {
-  text-align: center;
-  padding: 30px;
-  color: #777f92;
-}
-</style>
+    /* GENERATOR */
+
+    .generator {
+      max-width: 850px;
+      margin: 35px auto 0;
+      padding: 20px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 25px;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.35);
+      backdrop-filter: blur(20px);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 145px;
+      resize: vertical;
+      border: none;
+      outline: none;
+      border-radius: 18px;
+      padding: 20px;
+      background: #101222;
+      color: white;
+      font-size: 16px;
+      line-height: 1.6;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    textarea::placeholder {
+      color: #71778d;
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .generate-btn {
+      flex: 1;
+      min-width: 200px;
+      border: none;
+      padding: 16px 22px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #9333ea, #6366f1);
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .generate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(139,92,246,0.35);
+    }
+
+    .generate-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .clear-btn {
+      padding: 16px 22px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.06);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+    }
+
+    #status {
+      margin-top: 18px;
+      min-height: 24px;
+      color: #aeb4c7;
+      font-size: 14px;
+    }
+
+    /* RESULT */
+
+    #result {
+      margin: 35px auto 0;
+      max-width: 850px;
+      display: none;
+    }
+
+    .result-card {
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .result-card h2 {
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    #generatedImage {
+      width: 100%;
+      display: block;
+      border-radius: 18px;
+      background: #101222;
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      background: white;
+      color: #111;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    /* FEATURES */
+
+    .features {
+      max-width: 1100px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+
+    .features-title {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .features-title h2 {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .features-title p {
+      color: #9299ad;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      padding: 25px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .icon {
+      font-size: 35px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #8e95aa;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: #777e94;
+      font-size: 14px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 15px 20px;
+      }
+
+      .badge {
+        font-size: 11px;
+      }
+
+      .hero {
+        padding-top: 55px;
+      }
+
+      .hero-text {
+        font-size: 16px;
+      }
+
+      .generator {
+        margin-top: 25px;
+        padding: 14px;
+      }
+
+      textarea {
+        min-height: 130px;
+      }
+
+      .controls {
+        flex-direction: column;
+      }
+
+      .generate-btn,
+      .clear-btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">Dream<span>AI</span></div>
-</header>
+  <!-- HEADER -->
 
-<section class="hero">
-  <h1>Create With AI</h1>
-  <p>Generate images and videos from your imagination.</p>
+  <header>
+    <div class="logo">Dream<span>AI</span> ✨</div>
+    <div class="badge">AI Creator</div>
+  </header>
 
-  <div class="generator">
-    <textarea id="prompt"
-      placeholder="Describe what you want to create..."></textarea>
 
-    <button class="generate" onclick="generate()">
-      ✨ Generate
-    </button>
+  <!-- HERO -->
 
-    <p id="status" style="margin-top:15px;"></p>
-  </div>
-</section>
+  <main>
 
-<section class="cards">
+    <section class="hero">
 
-  <div class="card">
-    <div style="font-size:45px;">🎨</div>
-    <h2>2D Image</h2>
-    <p>Create beautiful AI 2D images.</p>
-  </div>
+      <div class="tag">✨ Powered by AI</div>
 
-  <div class="card">
-    <div style="font-size:45px;">🧊</div>
-    <h2>3D Image</h2>
-    <p>Create detailed 3D artwork.</p>
-  </div>
+      <h1>Create With AI</h1>
 
-  <div class="card">
-    <div style="font-size:45px;">🎬</div>
-    <h2>2D Video</h2>
-    <p>Turn your ideas into videos.</p>
-  </div>
+      <p class="hero-text">
+        Turn your imagination into stunning images.
+        Describe your idea and let DreamAI create it for you.
+      </p>
 
-  <div class="card">
-    <div style="font-size:45px;">🚀</div>
-    <h2>3D Video</h2>
-    <p>Create cinematic 3D videos.</p>
-  </div>
 
-  <div class="card">
-    <div style="font-size:45px;">💎</div>
-    <h2>4K Enhance</h2>
-    <p>Improve image and video quality.</p>
-  </div>
+      <!-- GENERATOR -->
 
-  <div class="card">
-    <div style="font-size:45px;">🖼️</div>
-    <h2>Image to Video</h2>
-    <p>Animate your images with AI.</p>
-  </div>
+      <div class="generator">
 
-</section>
+        <textarea
+          id="prompt"
+          placeholder="Describe the image you want...
 
-<footer>
-  © 2026 DreamAI — AI Creator Studio
-</footer>
+Example:
+A cinematic Indian village at sunset, an elderly grandfather sitting under a large banyan tree, warm golden light, realistic photography, highly detailed"
+        ></textarea>
 
-<script>
-function generate() {
-  const prompt = document.getElementById("prompt").value;
 
-  if (!prompt.trim()) {
-    document.getElementById("status").innerText =
-      "Please enter a prompt first.";
-    return;
-  }
+        <div class="controls">
 
-  document.getElementById("status").innerText =
-    "AI generation will be connected in the next step...";
-}
-</script>
+          <button
+            id="generateButton"
+            class="generate-btn"
+            onclick="generate()"
+          >
+            ✨ Generate Image
+          </button>
+
+          <button
+            class="clear-btn"
+            onclick="clearAll()"
+          >
+            Clear
+          </button>
+
+        </div>
+
+
+        <p id="status"></p>
+
+      </div>
+
+
+      <!-- RESULT -->
+
+      <div id="result">
+
+        <div class="result-card">
+
+          <h2>✨ Your AI Image</h2>
+
+          <img
+            id="generatedImage"
+            alt="DreamAI generated image"
+          >
+
+          <a
+            id="downloadButton"
+            class="download-btn"
+            download="dream-ai-image.jpg"
+          >
+            ⬇️ Download Image
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="features">
+
+      <div class="features-title">
+
+        <h2>Everything You Imagine</h2>
+
+        <p>
+          Create different types of AI artwork with DreamAI.
+        </p>
+
+      </div>
+
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="icon">🎨</div>
+          <h3>2D Art</h3>
+          <p>
+            Create beautiful illustrations, anime,
+            cartoons and digital artwork.
+          </p>
+        </div>
+
+
+        <div class="card">
+          <div class="icon">🌐</div>
+          <h3>3D Art</h3>
+          <p>
+            Generate detailed 3D scenes,
+            characters and environments.
+          </p>
+        </div>
+
+
+        <div class="card">
+          <div class="icon">🎬</div>
+          <h3>Video Ideas</h3>
+          <p>
+            Turn your imagination into
+            cinematic video concepts.
+          </p>
+        </div>
+
+
+        <div class="card">
+          <div class="icon">🚀</div>
+          <h3>Creative</h3>
+          <p>
+            Experiment with unlimited creative
+            image ideas and prompts.
+          </p>
+        </div>
+
+
+        <div class="card">
+          <div class="icon">💎</div>
+          <h3>High Detail</h3>
+          <p>
+            Generate detailed AI artwork
+            from simple descriptions.
+          </p>
+        </div>
+
+
+        <div class="card">
+          <div class="icon">⚡</div>
+          <h3>Simple</h3>
+          <p>
+            Just type your idea and press
+            Generate.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 DreamAI — AI Creator Studio
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    async function generate() {
+
+      const promptElement =
+        document.getElementById("prompt");
+
+      const status =
+        document.getElementById("status");
+
+      const button =
+        document.getElementById("generateButton");
+
+      const result =
+        document.getElementById("result");
+
+      const generatedImage =
+        document.getElementById("generatedImage");
+
+      const downloadButton =
+        document.getElementById("downloadButton");
+
+
+      const prompt =
+        promptElement.value.trim();
+
+
+      /* CHECK PROMPT */
+
+      if (!prompt) {
+
+        status.textContent =
+          "⚠️ Please enter an image description first.";
+
+        promptElement.focus();
+
+        return;
+      }
+
+
+      /* START */
+
+      button.disabled = true;
+
+      button.textContent =
+        "⏳ Generating...";
+
+      status.textContent =
+        "✨ DreamAI is creating your image...";
+
+
+      result.style.display = "none";
+
+
+      try {
+
+        const response =
+          await fetch("/api/generate", {
+
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+              prompt: prompt
+            })
+
+          });
+
+
+        const data =
+          await response.json();
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            data.error ||
+            "Image generation failed."
+          );
+
+        }
+
+
+        if (!data.image) {
+
+          throw new Error(
+            "No image was returned."
+          );
+
+        }
+
+
+        /* SHOW IMAGE */
+
+        generatedImage.src =
+          data.image;
+
+
+        downloadButton.href =
+          data.image;
+
+
+        result.style.display =
+          "block";
+
+
+        status.textContent =
+          "✅ Your image is ready!";
+
+
+        result.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+
+      } catch (error) {
+
+        console.error(error);
+
+
+        status.textContent =
+          "❌ " +
+          (error.message ||
+          "Something went wrong.");
+
+      }
+
+
+      /* RESET BUTTON */
+
+      button.disabled = false;
+
+      button.textContent =
+        "✨ Generate Image";
+
+    }
+
+
+    /* CLEAR */
+
+    function clearAll() {
+
+      document.getElementById("prompt").value = "";
+
+      document.getElementById("status").textContent = "";
+
+      document.getElementById("result").style.display = "none";
+
+      document.getElementById("generatedImage").src = "";
+
+    }
+
+
+    /* CTRL + ENTER */
+
+    document
+      .getElementById("prompt")
+      .addEventListener("keydown", function(event) {
+
+        if (
+          event.ctrlKey &&
+          event.key === "Enter"
+        ) {
+
+          generate();
+
+        }
+
+      });
+
+  </script>
 
 </body>
-  </html>
+    </html>
